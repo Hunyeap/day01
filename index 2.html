@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김진발사대</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-interface">
+        <header class="chat-header">
+            <h1>진네커 ver.2.0.5</h1>
+        </header>
+
+        <main class="chat-content" id="chatContent"></main>
+
+        <footer class="chat-footer">
+            <form id="commentForm" class="input-form" enctype="multipart/form-data">
+                <input 
+                    type="text" 
+                    id="comment" 
+                    name="comment" 
+                    placeholder="댓글을 입력하세요..."
+                    class="input-field"
+                    autocomplete="off"
+                >
+                <label for="image" class="upload-button">+</label>
+                <input type="file" id="image" name="image" 
+                accept="image/*" class="file-upload">
+                <button type="submit" class="submit-button">보내기</button>
+                
+            </form>
+        </footer>
+    </div>
+    <div id="imageModal" class="modal">
+        <span id="closeModal" class="close">&times;</span>
+        <img id="modalImage" class="modal-content" alt="확대된 이미지">
+        <a id="downloadLink" download class="download-button">이미지 저장</a>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

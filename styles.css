@@ -1,0 +1,231 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-interface {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    width: 100%;
+    max-width: 1200px;
+    height: 95vh;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.chat-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    height: auto;
+    text-align: center;
+}
+
+.chat-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+/* 동일 사용자 및 시간 단위 동안 간격 줄임 */
+.message-container.same-user {
+    margin-bottom: 0px; /* 간격 최소화 */
+}
+
+/* 사용자 이름 및 프로필 이미지 컨테이너 */
+.user-info-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* 사용자 이름과 메시지 간의 간격 */
+}
+
+/* 원형 프로필 이미지 */
+.profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; /* 원형 처리 */
+    margin-right: 8px; /* 사용자 이름과 이미지 간 간격 */
+    object-fit: cover; /* 이미지를 컨테이너에 맞게 조정 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.my-message {
+    align-items: flex-end;
+    align-self: flex-end;
+}
+
+.external-message .message {
+    background: #f1f1f1;
+    color: #333;
+    text-align: left;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 8px;
+    max-width: 100%;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+    display: inline-block;
+
+}
+
+.external-message {
+    align-self: flex-start;
+}
+
+.my-message .message {
+    background-color: #007BFF;
+    color: white;
+    text-align: right;
+}
+.user-info {
+    font-size: 12px; 
+    color: #888; 
+    margin-bottom: 2px; 
+}
+
+.time-info {
+    font-size: 11px;
+    color: gray;
+    text-align: right;
+}
+
+.chat-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+}
+
+.input-form {
+    display: flex; /* Flexbox 적용 */
+    flex-grow: 1; /* 입력창이 남은 공간을 최대한 차지 */
+    gap: 10px; /* 입력창과 버튼 간 간격 */
+}
+
+.upload-button {
+    flex-shrink: 0; /* 크기 축소 방지 */
+    background-color: #007BFF;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.submit-button {
+    flex-shrink: 0;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0 20px; /* 좌우 여백 */
+    height: 40px; /* 버튼 높이 */
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.file-upload {
+    display: none; /* 업로드 버튼 숨김 */
+}
+
+.input-field {
+    flex-grow: 1; /* 입력창이 가로 공간을 최대로 차지하도록 설정 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    width: 100%; /* 부모 요소의 가로 크기에 맞춤 */
+}
+.uploaded-image {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+    content: flex center;
+    display: block;
+    margin: auto;
+    border-radius: 10px; /* 모서리 라운드 처리 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+
+}
+.modal {
+    display: none; /* 초기 상태에서 숨김 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* 배경 반투명 */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%; /* 최대 너비 */
+    max-height: 80%; /* 최대 높이 */
+    border: 2px solid white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.download-button {
+    display: block;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 20px;
+    max-width: 80%; /* 최대 너비 */
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}

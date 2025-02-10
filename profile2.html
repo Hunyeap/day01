@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>냄새톡</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        input[type="button"]:hover {
+            background-color: #004080;
+        }
+
+        .forgot-password {
+            color: #0056b3;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* 프로필 div (초기 숨김 상태) */
+        #profile {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none; /* 로그인 전에는 숨김 */
+        }
+
+        select {
+            width: 60%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .profile {
+            width: 200px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-top: 10px;
+            margin-right: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            width: 150px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        #menu input[type="button"] {
+            padding: 12px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        #menu input[type="button"]:hover {
+            background-color: #004080;
+        }
+        #submit{
+            width:100px;
+        }
+        #name{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>welcome to 냄새톡</h1>
+
+    <!-- 로그인 폼 -->
+    <div id="login-form" class="login-container">
+        <h1>로그인</h1>
+        <form id="login">
+            <input type="text" id="username" placeholder="아이디" required><br>
+            <input type="password" id="password" placeholder="비밀번호" required><br>
+            <input type="button" value="로그인" id="login-button">
+            <div>
+                <a href="#" class="forgot-password">아이디 = 이름 , 비밀번호 = 생년월일(6자리)</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- 로그인 후 보여줄 div (초기 숨김) -->
+    <div id="profile" style="display: none;">
+        <h1>My Profile</h1>
+        <div id="text">
+            <form id="form">
+                <select id="name">
+                    <option value="">원하는 프로필 선택</option>
+                    <option value="김진">진</option>
+                    <option value="성민석">민석</option>
+                    <option value="최훈엽">훈엽</option>
+                    <option value="김대영">대영</option>
+                    <option value="주정혁">정혁</option>
+                    <option value="구지훈">지훈</option>
+                    <option value="김태현">태현</option>
+                    <option value="손승우">승우</option>
+                    <option value="배민혁">민혁</option>
+                    <option value="음주 손 텐겐">음주</option>
+                </select>
+                <input type="button" id="submit" value="PUSH">
+            </form>
+        </div>
+        <div id="menu">
+            <a href="./public/chat.html">
+                <input type="button" value="go chat">
+            </a>
+            <a>
+                <input type="button" value="blogging">
+            </a>
+            <a>
+                <input type="button" value="searching">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById("form");
+        const button = document.getElementById("submit");
+        const container = document.getElementById("text");
+        const inputName = document.getElementById("name");
+        const loginButton = document.getElementById('login-button');
+        const loginForm = document.getElementById('login-form');
+        const profileDiv = document.getElementById('profile');
+
+        // 이름별 이미지 경로 매핑
+        const nameImages = {
+            "이름 선택": null,
+            "김진": "./profile/fuckjin.jpeg",
+            "성민석": "./profile/fuckminsuk.png",
+            "최훈엽": "./profile/hunyeop.jpeg",
+            "김대영": "./profile/fuckdeayoung.jpeg",
+            "주정혁": "./profile/jeonghyuck.jpeg",
+            "구지훈": "./profile/jihoon.jpeg",
+            "김태현": "./profile/teahyun.jpeg",
+            "손승우": "./profile/seungwoo.jpeg",
+            "배민혁": "./profile/minhyeok.jpeg",
+            "음주 손 텐겐": "./profile/emju.jpeg"
+        };
+        // 이름별 비번 경로 매핑
+        const users = {
+            "김진": "010320",
+            "성민석": "020101",
+            "최훈엽": "011004",
+            "김대영": "030505",
+            "주정혁": "040707",
+            "구지훈": "021120",
+            "김태현": "021004",
+            "손승우": "070101",
+            "배민혁": "080202",
+        };
+
+        button.addEventListener('click', function () {
+            const selectedValue = inputName.value;
+
+            // 기존 이미지 삭제
+            const existingImage = container.querySelector('img');
+            if (existingImage) {
+                existingImage.remove();
+            }
+
+            // 새로운 이미지 추가
+            if (nameImages[selectedValue]) {
+                const img = document.createElement('img');
+                img.src = nameImages[selectedValue];
+                img.className = "profile";
+                container.appendChild(img);
+            }
+        });
+
+        loginButton.addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (users[username] && users[username] == password) {
+                loginForm.style.display = "none";  // 로그인 폼 숨기기
+                profileDiv.style.display = "block";  // 프로필 div 보이기
+            } else {
+                alert('아이디 또는 비밀번호가 잘못되었습니다.');
+            }
+        });
+    </script>
+</body>
+</html>
