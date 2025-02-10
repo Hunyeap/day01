@@ -1,2 +1,1 @@
-name = input("Your name? ")
-print('hi'+ (name)+'~')
+print('Hello from a new commit')
